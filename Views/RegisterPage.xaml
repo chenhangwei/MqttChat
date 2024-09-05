@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat.Views.RegisterPage"
+             xmlns:local1="clr-namespace:Chat.Converters"
+             Title="注册页面">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="提交"
+                  IconImageSource="submit.png" Command="{Binding RegisterCommand}" CommandParameter="{Binding PhoneErrorMsg}" Order="Primary"/>
+        <ToolbarItem Text="清除"
+                  IconImageSource="clean.png" Command="{Binding ClearCommand}" Order="Default"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local1:GenderToBooleanConverter x:Key="GenderToBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+    <Grid Margin="10" HorizontalOptions="Center" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0"  Orientation="Horizontal"  Padding="5">
+            <Label Text="手机号码：" VerticalTextAlignment="Center"/>
+            <Entry Margin="5" WidthRequest="180" Text="{Binding Phone}" HorizontalOptions="FillAndExpand" />
+            <Label Text="*"  VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <StackLayout Grid.Row="1" HorizontalOptions="Center" >
+            <Label Text="{Binding PhoneErrorMsg}" VerticalTextAlignment="Center" TextColor="Red"/>
+        </StackLayout>
+        <StackLayout Grid.Row="2"  Orientation="Horizontal" Padding="5">
+            <Label Text="姓        名：" VerticalTextAlignment="Center"/>
+            <Entry Margin="5" WidthRequest="180" Text="{Binding Name}" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Grid.Row="3" HorizontalOptions="Center" >
+            <Label Text="{Binding NameErrorMsg}" VerticalTextAlignment="Center" TextColor="Red"/>
+        </StackLayout>
+        <StackLayout Grid.Row="4"  Orientation="Horizontal" VerticalOptions="Center" Padding="5">
+            <CheckBox VerticalOptions="Center" Margin=" 10,5,0,5" IsChecked="{Binding Gender,Converter={StaticResource GenderToBooleanConverter},ConverterParameter=Male}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="男" VerticalTextAlignment="Center" Margin="5" HorizontalOptions="FillAndExpand"/>
+            <CheckBox Margin="20,5,0,5" IsChecked="{Binding Gender,Converter={StaticResource GenderToBooleanConverter},ConverterParameter=Female}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="女" VerticalTextAlignment="Center" Margin="5" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Grid.Row="5"  Orientation="Horizontal" Padding="5">
+            <Label Text="邮         箱:" VerticalTextAlignment="Center" />
+            <Entry Margin="5" WidthRequest="180" Text="{Binding Email}" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Grid.Row="6" HorizontalOptions="Center" >
+            <Label Text="{Binding EmailErrorMsg}" VerticalTextAlignment="Center" TextColor="Red"/>
+        </StackLayout>
+        <StackLayout Grid.Row="7"  Orientation="Horizontal" Padding="5">
+            <Label Text="密         码："  VerticalTextAlignment="Center"/>
+            <Entry Margin="5" WidthRequest="180" IsPassword="True" Text="{Binding PassWord}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="*" VerticalTextAlignment="Center" />
+        </StackLayout>
+        <StackLayout Grid.Row="8"  Orientation="Horizontal" Padding="5">
+            <Label Text="重复密码："  VerticalTextAlignment="Center"/>
+            <Entry Margin="5" WidthRequest="180" IsPassword="True" Text="{Binding AgainPassWord}" HorizontalOptions="FillAndExpand"/>
+            <Label Text="*" VerticalTextAlignment="Center" />
+        </StackLayout>
+        <StackLayout Grid.Row="9" HorizontalOptions="Center" >
+            <Label Text="{Binding PassWordErrorMsg}" VerticalTextAlignment="Center" TextColor="Red"/>
+        </StackLayout>
+        <StackLayout Grid.Row="10" HorizontalOptions="Center" >
+            <Label Text="{Binding AgainPassWordErrorMsg}" VerticalTextAlignment="Center" TextColor="Red"/>
+        </StackLayout>
+        <StackLayout Grid.Row="11"  Orientation="Horizontal" Padding="5">
+            <Image Source="{Binding Picture}" WidthRequest="100" HeightRequest="100" BackgroundColor="Azure"  Aspect="AspectFit" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <StackLayout Grid.Row="12" Orientation="Horizontal">
+            <Entry Text="{Binding Picture}"  WidthRequest="150" Margin="5" Placeholder="输入头像链接" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </Grid>
+    </ScrollView>
+</ContentPage>

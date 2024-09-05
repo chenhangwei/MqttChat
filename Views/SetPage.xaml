@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat.Views.SetPage"
+             Title="设置">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="保存" IconImageSource="save.png" Command="{Binding SaveCommand}" Order="Default"/>
+    </ContentPage.ToolbarItems>
+    <Grid HorizontalOptions="Center" Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Orientation="Horizontal" Padding="5" >
+            <Label Text="Host:" VerticalOptions="Center" Margin="5"/>
+            <Entry Text="{Binding Host}" WidthRequest="300" VerticalOptions="Center" Margin="5"/>
+        </StackLayout>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Padding="5" >
+            <Label Text="Port:" VerticalOptions="Center" Margin="5"/>
+            <Entry Text="{Binding Port}" WidthRequest="100" Margin="5"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

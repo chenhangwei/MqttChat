@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat.Views.AboutPage"
+             Title="关于">
+    <VerticalStackLayout  >
+        <Label 
+            Text="欢迎使用本对话软件!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="Medium"
+            />
+        <Border Margin="10"
+                StrokeShape="RoundRectangle 40,10,10,40"                
+                >
+        <Image Aspect="AspectFit" 
+               Source="chat.png" 
+               WidthRequest="200
+               " 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               Margin="10"/>
+        </Border>
+        <Button Margin="15" Text="网页链接..." Command="{Binding LinkWebCommand}" />
+        <Border>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="15">
+             <Label Text="软件版本：" />
+            <Label Text="{Binding Version}"/>
+        </StackLayout>
+       </Border>
+
+    </VerticalStackLayout>
+</ContentPage>

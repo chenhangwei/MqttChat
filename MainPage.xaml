@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat.MainPage"
+            >
+
+    <ContentPage.ToolbarItems>
+       
+        <ToolbarItem Text="注册"
+                     IconImageSource="register.png" Command="{Binding GoToRegisterPageCommand}" Order="Default"/>
+        <ToolbarItem Text="设置"
+                     IconImageSource="set.png" Command="{Binding GoToSetPageCommand}" Order="Default"/>
+        <ToolbarItem Text="关于"
+                     IconImageSource="about.png" Command="{Binding GoToAboutPageCommand}" Order="Default"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid HorizontalOptions="Center" VerticalOptions="Center" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               Source="chat.png"
+               HeightRequest="150"
+               Aspect="AspectFit"
+               Margin="10"
+               SemanticProperties.Description="dot net bot in a race car number eight" />
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <Label Text="手机号：" FontSize="Subtitle" VerticalOptions="Center"/>
+            <Entry Text="{Binding Phone}" Placeholder="请输入手机号码" FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="Center"  />
+        </StackLayout>
+        <StackLayout Grid.Row="2">
+            <Label Text="{Binding PhoneErrorMsg}" VerticalTextAlignment="Center" TextColor="Red" HorizontalOptions="Center"/>
+        </StackLayout>
+        <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="10">
+            <Label Text="密   码：" FontSize="Subtitle" VerticalOptions="Center"/>
+            <Entry Text="{Binding PassWord}" IsPassword="True"  FontSize="15"  Placeholder="请输入密码" HorizontalOptions="FillAndExpand"  VerticalOptions="Center"  />
+        </StackLayout>
+        <StackLayout Grid.Row="4">
+            <Label Text="{Binding PassWordErrorMsg}" VerticalTextAlignment="Center" TextColor="Red" HorizontalOptions="Center"/>
+        </StackLayout>
+        <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="10" HorizontalOptions="Center">
+            <Label Text="记住密码" VerticalOptions="Center" FontSize="Default" Margin="5"/>
+            <CheckBox  VerticalOptions="Center" Margin="5" IsChecked="{Binding IsRemember}" />
+        </StackLayout>
+        <StackLayout Grid.Row="6" Orientation="Horizontal" Margin="10">
+            <Button Text="登入" Command="{Binding LoginCommand}" CommandParameter="{Binding PhoneErrorMsg}" HorizontalOptions="StartAndExpand" WidthRequest="80" Margin="5"/>
+            <Button Text="注销" Command="{Binding LogOffCommand}" HorizontalOptions="EndAndExpand" WidthRequest="80" Margin="5"/>
+        </StackLayout>
+
+    </Grid>
+    
+</ContentPage>

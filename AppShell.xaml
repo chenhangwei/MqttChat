@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Chat.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Chat"
+    xmlns:local1="clr-namespace:Chat.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Chat"
+   
+    >
+    <ShellContent
+        Title="登入页面"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+      Title="关于页面"
+      ContentTemplate="{DataTemplate local1:AboutPage}"
+      Route="AboutPage" />
+    <ShellContent
+        Title="聊天页面"
+        ContentTemplate="{DataTemplate local1:ChatPage}"
+        Route="ChatPage" />
+    <ShellContent
+        Title="注册页面"
+        ContentTemplate="{DataTemplate local1:RegisterPage}"
+        Route="RegisterPage" />
+
+</Shell>

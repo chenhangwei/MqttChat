@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat.Views.ChatPage"
+             xmlns:local1="clr-namespace:Chat.Models"
+             xmlns:local2="clr-namespace:Chat.Converters"
+             xmlns:local3="clr-namespace:Chat.UserControls"
+             Title="聊天页面">
+    
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="链接"
+                     IconImageSource="{Binding LinkState}" Command="{Binding ConnetMqttAsyncCommand}" Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+      
+        <DataTemplate x:Key="ChatMsgTemplate" x:DataType="local1:ChatMsg" >
+            <ViewCell >
+                <ViewCell.View>
+                    <Border StrokeShape="RoundRectangle 1,1,11"   Margin="5,5,5,5" >
+                         <Grid Margin="15,5,15,5"  ><!--BackgroundColor="#8EE5EE"-->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" 
+                                     Source="{Binding Users.Picture}" 
+                                     Aspect="AspectFit" 
+                                     HorizontalOptions="Center"  
+                                     VerticalOptions="Center" 
+                                     Margin="5,5,5,5"
+                                     WidthRequest="40"
+                                     HeightRequest="40"
+                                     />
+                        <Label Grid.Column="0" Grid.Row="3"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Text="{Binding Users.Name}"/>
+                        <Label Grid.Column="1" Grid.Row="0"  
+                               Text="{Binding ReceiveDateTime,StringFormat=' {0:yyyy-MM-dd} {0:HH:mm:ss}'}" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center"
+                               FontSize="Caption"/>
+                      
+                            <Editor Text="{Binding ReceiveMsg}"        
+                                    
+                             IsReadOnly="True"
+                                 BackgroundColor="Transparent"
+                                    Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+                                   Margin="15,2,2,2"
+                               FontSize="Default"/> <!--Background="#AEEEEE"-->   <!--LineBreakMode="WordWrap"-->
+                 
+                        
+                    </Grid>
+                    </Border>
+                   
+                </ViewCell.View>
+                <ViewCell.ContextActions  >
+                    <MenuItem Text="查看用户详情" 
+                              IconImageSource="personaldata.png" 
+                              Command="{Binding Source={x:Reference listView },Path=BindingContext.GoToUserPageCommand}"
+                              CommandParameter="{Binding}"/>
+                    <MenuItem Text="删除本条记录" 
+                              IconImageSource="del.png"  
+                              Command="{Binding Source={x:Reference listView },Path=BindingContext.GoToUserPageCommand}" 
+                              CommandParameter="{Binding}"/>
+                </ViewCell.ContextActions>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+        <Border StrokeShape="RoundRectangle 5,5,5,5"  Margin="20,5,5,10" >
+            <StackLayout Orientation="Horizontal" Margin="20,5,5,5" ><!--Background="#AEEEEE"-->
+            <Label Text="订阅主题：" VerticalOptions="Center" FontSize="Micro" />
+            <Entry Text="{Binding TopicFirst}" VerticalOptions="Center" WidthRequest="120" /><!--BackgroundColor="#79CDCD"-->
+            <Label Text="/" VerticalOptions="Center" Margin="5" FontSize="Micro"/>
+            <Entry Text="{Binding TopicSecond}" VerticalOptions="Center" WidthRequest="120" /><!--BackgroundColor="#79CDCD"-->
+        </StackLayout>
+        </Border>
+        
+        <ListView x:Name="listView" 
+                  ItemsSource="{Binding ChatMsgs}"  
+                  ItemTemplate="{StaticResource ChatMsgTemplate}"  
+                  HasUnevenRows="True"  
+                  SeparatorColor="Goldenrod" 
+                  SeparatorVisibility="Default" 
+                  
+                  VerticalScrollBarVisibility="Always" 
+                 
+                  SelectionMode="Single"> <!--BackgroundColor="LightYellow"-->
+        </ListView>
+        <StackLayout Orientation="Horizontal" Margin="10" HorizontalOptions="Center">
+            <Entry Text="{Binding SendMsg}" VerticalOptions="Center" WidthRequest="200" Margin="20,5,5,5"/>
+            <Button Text="Send" Command="{Binding PublishAsyncCommand}" VerticalOptions="Center"  WidthRequest="80" Margin="20,5,5,5"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
